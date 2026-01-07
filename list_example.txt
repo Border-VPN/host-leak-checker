@@ -1,0 +1,10 @@
+# Пример формата list.txt
+# Можно указывать либо прямые host:port, либо URL-адреса подписок (если URL — скрипт попытается скачать и декодировать)
+
+# Прямые хосты:
+111.222.333.444:443
+node.example.com:443
+
+# Или URL-подписки (входящие в file как список URL):
+https://subscription.example.org/example1
+https://subscription.example.org/example2

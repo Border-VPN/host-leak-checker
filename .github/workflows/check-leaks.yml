@@ -1,0 +1,43 @@
+name: Check host leaks
+
+on:
+    schedule:
+        - cron: "0 * * * *" # run hourly at minute 0
+    workflow_dispatch: {}
+
+permissions:
+    contents: read
+    issues: write
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+
+            - name: Set up Python1
+              uses: actions/setup-python@v6
+              with:
+                  python-version: "3.x"
+
+            - name: Install dependencies
+              run: pip install -r requirements.txt
+
+            - name: Run host leak checker
+              env:
+                  CREATE_ISSUE: "true"
+                  GITHUB_REPOSITORY: ${{ github.repository }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  SUBSCRIPTION_URL: ${{ secrets.SUBSCRIPTION_URL }}
+              run: |
+                  # SUBSCRIPTION_URL is provided from secrets to avoid leaking the subscription link in the repository
+                  python check_leaks.py "$SUBSCRIPTION_URL" list.txt --create-issue
+
+            - name: Upload reports
+              uses: actions/upload-artifact@v6
+              with:
+                  name: leak-report
+                  path: |
+                      leak_report.json
+                      leak_report.md

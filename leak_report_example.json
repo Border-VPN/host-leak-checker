@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-01-07T14:46:58.595078+00:00",
+  "target_url": "<SUB_URL>",
+  "target_hosts": [
+    "123.1.4.190:443",
+    "node1.example.com:443",
+    "node2.example.com:443",
+    "node3.example.com:443"
+  ],
+  "sources_count": 28,
+  "matches": [
+    {
+      "host": "123.1.4.190:443",
+      "source": "list.txt#L5"
+    },
+    {
+      "host": "node1.example.com:443",
+      "source": "leak_sources.txt#L8"
+    }
+  ]
+}
