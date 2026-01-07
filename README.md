@@ -32,8 +32,8 @@ bash <(curl -Ls https://raw.githubusercontent.com/Border-VPN/host-leak-checker/m
 1. Перейдите в `/opt/`, клонируйте репозиторий и перейдите в директорию
 
     ```bash
-    cd /opt/ \
-    git clone https://github.com/BorderVPN/host-leak-checker.git \
+    cd /opt &&
+    git clone https://github.com/Border-VPN/host-leak-checker.git &&
     cd host-leak-checker
     ```
 
